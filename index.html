@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diana Díaz Front-end Dev</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Diana Díaz</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <!--Hamburger Menu mobile --> 
+            <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header> 
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Hi! I'm Diana Díaz</h1>
+            <p class="hero-subtitle">Front-end Developer.</p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            </div>
+        </div> 
+    </section>
+
+    <!--About Section-->
+
+    <section id="about" class="about">
+        <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Hello! I'm a passionate Front-end Developer</h3>
+        <p>I’m a Front-End Developer who sees technology as a bridge — connecting people, ideas, and experiences.</p>
+        <p>I design interfaces that are accessible, functional, and engaging, because I believe every line of code is a chance to create something meaningful. I adapt quickly, learn with curiosity, and collaborate with a forward-looking mindset. My aim is simple: to craft digital solutions that don’t just work, but leave a lasting impression.</p>
+            </div>
+            <div class="about-image">
+                <img src="profile.jpg" alt="Sofía Vázquez">
+            </div> 
+            <div class="skill-grid">
+                <div class="skill-item" data-skill="html">
+                    <div class="skill-icon">🌐</div>
+                    <div>HTML</div>
+                </div>
+                 <div class="skill-item" data-skill="css">
+                    <div class="skill-icon">🌐</div>
+                    <div>CSS3</div>
+                </div>
+                 <div class="skill-item" data-skill="js">
+                    <div class="skill-icon">🌐</div>
+                    <div>JavaScript</div>
+                </div>
+                 <div class="skill-item" data-skill="react">
+                    <div class="skill-icon">🌐</div>
+                    <div>React</div>
+                </div>
+                 <div class="skill-item" data-skill="figm">
+                    <div class="skill-icon">🌐</div>
+                    <div>Figma</div>
+                </div>
+                 <div class="skill-item" data-skill="git">
+                    <div class="skill-icon">🌐</div>
+                    <div>GIT</div>
+                </div>
+                 <div class="skill-item" data-skill="wordpress">
+                    <div class="skill-icon">🌐</div>
+                    <div>Wordpress</div>
+                </div>
+                 <div class="skill-item" data-skill="tailwind">
+                    <div class="skill-icon">🌐</div>
+                    <div>Tailwind</div>
+                </div> 
+                <div class="skill-item" data-skill="bootstrap">
+                    <div class="skill-icon">🌐</div>
+                    <div>Bootstrap</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!--Projects Section-->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                     <div class="project-content">
+                        <h3 class="project-title">WaterBox Media - Wordpress Website</h3>
+                        <p class="project-description">
+                            Developed and customized the website using WordPress and Divi. Implemented plugins for performance optimization and appointment scheduling to enhance functionality and user experience.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Wordpress</span>
+                            <span class="tech-tag">Divi</span>
+                            <span class="tech-tag">CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://waterboxmedia.com/" class="project-link">Waterbox Media</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+    <!--Contact Section-->
+     <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Contact</h2>
+                <p>Do you have a project in mind? Let's talk and make it happen!</p>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                        <span class="error-message"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error-message"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                        <span class="error-message"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                        <span class="error-message"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Submit</span>
+                        <span class="btn-loading" style="display: none;">Loading...</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="dianitadiaz777@gmail.com" class="social-link" title="Email">Email</a>
+                <a href="https://www.linkedin.com/in/diana-sof%C3%ADa-v%C3%A1zquez-d%C3%ADaz-43ba26236/" class="social-link" title="LinkedIn">LinkedIn</a>
+                <a href="https://github.com/SofiDiaz11" class="social-link" title="GitHub">GitHub</a>
+            </div>
+            <p>&copy; 2025 Diana Díaz. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
