@@ -1,6 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Habibi&family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+@media (hover: hover) and (pointer: fine) {
+    * {
+        cursor: none !important;
+    }
+}
+
 /* ===== Variables - Modo claro ===== */
 :root {
     /* Paleta de colores - Modo Claro */
@@ -1033,5 +1039,172 @@ footer p {
     .skills-track {
         animation: none;
         transform: translateX(0);
+    }
+}
+
+/* Navegación activa con scroll spy */
+.nav-links a.active {
+    color: var(--accent-red);
+    position: relative;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Estados iniciales para elementos que se van a animar */
+.section-title {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+}
+
+.about-text {
+    opacity: 0;
+    transform: translateX(-40px);
+}
+
+.about-image {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+.project-card {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+}
+
+.form-group {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.contact-content p {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.social-link {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Para usuarios sin JavaScript - Override de estados iniciales */
+.no-js .section-title,
+.no-js .about-text,
+.no-js .about-image,
+.no-js .project-card,
+.no-js .form-group,
+.no-js .contact-content p,
+.no-js .social-link {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Smooth scroll mejorado para el nuevo sistema */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading state mientras GSAP carga */
+.gsap-loading {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gsap-ready .gsap-loading {
+    opacity: 1;
+}
+
+/*Cursor Personalizado */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    transition: background-color var(--transition-normal);
+}
+
+.cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    border: 2px solid var(--accent-red);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+    background: transparent;
+    transition: border-color var(--transition-normal);
+}
+
+.cursor-theme {
+    background: var(--primary-medium) !important;
+    border-color: var(--primary-medium) !important;
+} 
+
+/*Modo oscuro*/ 
+[data-theme="dark"] .custom-cursor {
+    background: var(--accent-red);
+    mix-blend-mode: exclusion;
+}
+
+[data-theme="dark"] .cursor-follower {
+    border-color: var(--accent-red);
+}
+
+[data-theme="dark"] .cursor-theme {
+    background: var(--primary-light) !important;
+    border-color: var(--primary-light) !important;
+} 
+/*Responsive */
+@media (hover: none) and (pointer: coarse) {
+    .custom-cursor,
+    .cursor-follower {
+        display: none !important;
+    }
+    
+    /* Restaurar cursor normal en móviles */
+    * {
+        cursor: auto !important;
+    }
+}
+
+/* optimización de performance */
+
+.custom-cursor,
+.cursor-follower {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/*Accesibilidad*/
+@media (prefers-reduced-motion: reduce) {
+    .custom-cursor,
+    .cursor-follower {
+        display: none !important;
+    }
+    
+    * {
+        cursor: auto !important;
+    }
+}
+ /*Estados de Focus */
+ @media (hover: hover) and (pointer: fine) {
+    a:focus,
+    button:focus,
+    input:focus,
+    textarea:focus {
+        outline: 2px solid var(--accent-red);
+        outline-offset: 2px;
     }
 }
