@@ -930,9 +930,9 @@ footer p {
         padding: 0 var(--spacing-md);
     }
     
-    .nav-links {
+    /*.nav-links {
         display: none;
-    }
+    }*/
     
     .burger {
         display: flex;
@@ -1208,3 +1208,295 @@ html {
         outline-offset: 2px;
     }
 }
+
+/*Hamburger Menu Animations*/
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    padding: 8px;
+    border-radius: var(--border-radius-sm);
+    transition: background-color var(--transition-normal);
+    position: relative;
+    z-index: 1001;
+}
+
+.burger:hover {
+    background-color: var(--primary-medium-opacity);
+}
+
+.burger span {
+    width: 25px;
+    height: 3px;
+    background: var(--primary-dark);
+    transition: all var(--transition-normal);
+    border-radius: var(--border-radius-sm);
+    transform-origin: center;
+}
+
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+} 
+
+/* Menu movil */
+@media (max-width: 768px) {
+    
+    /* Mostrar hamburguesa */
+    .burger {
+        display: flex;
+    }
+    
+    /* Ocultar navegación desktop */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--primary-light);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: var(--spacing-xl);
+        transform: translateX(100%);
+        transition: transform var(--transition-normal);
+        z-index: 1000;
+        padding: var(--spacing-xxl);
+        box-shadow: var(--shadow-xl);
+    }
+    
+    /* Menú activo */
+    .nav-links.nav-active {
+        transform: translateX(0);
+    }
+    
+    /* Items del menú móvil */
+    .nav-links li {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all var(--transition-normal);
+    }
+    
+    .nav-links.nav-active li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Enlaces del menú móvil */
+    .nav-links a {
+        font-size: 1.5rem;
+        font-weight: var(--font-weight-semibold);
+        color: var(--primary-dark);
+        text-align: center;
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius-md);
+        transition: all var(--transition-normal);
+        position: relative;
+        display: block;
+        min-width: 200px;
+    }
+    
+    .nav-links a:hover {
+        background: var(--accent-red-opacity);
+        color: var(--accent-red);
+        transform: scale(1.05);
+    }
+    
+    /* Efecto especial para enlaces activos */
+    .nav-links a.active {
+        background: var(--accent-red);
+        color: var(--primary-light);
+    }
+    
+    /* Header cuando menú está abierto */
+    header.menu-open {
+        background: var(--primary-light);
+        backdrop-filter: none;
+        box-shadow: none;
+    }
+    
+    /* Theme toggle en móvil */
+    .theme-toggle {
+        position: absolute;
+        bottom: var(--spacing-xl);
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: 0;
+        z-index: 1001;
+    }
+    
+    /* Reorganizar elementos en nav */
+    nav {
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo {
+        z-index: 1001;
+        position: relative;
+    }
+} 
+
+/* Dark mode */ 
+@media (max-width: 768px) {
+    [data-theme="dark"] .nav-links {
+        background: var(--primary-light);
+    }
+    
+    [data-theme="dark"] header.menu-open {
+        background: var(--primary-light);
+    }
+    
+    [data-theme="dark"] .nav-links a {
+        color: var(--primary-dark);
+    }
+    
+    [data-theme="dark"] .nav-links a:hover {
+        background: var(--accent-red-opacity);
+        color: var(--accent-red);
+    }
+    
+    [data-theme="dark"] .nav-links a.active {
+        background: var(--accent-red);
+        color: var(--primary-light);
+    }
+} 
+/* Animaciones para items del menú móvil */ 
+@media (max-width: 768px) {
+    .nav-links.nav-active li:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    
+    .nav-links.nav-active li:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+    
+    .nav-links.nav-active li:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+    
+    .nav-links.nav-active li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+} 
+ /*Overlay */ 
+
+ @media (max-width: 768px) {
+    .nav-links::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            135deg, 
+            var(--primary-light) 0%, 
+            var(--secondary-light) 100%
+        );
+        z-index: -1;
+    }
+    
+    [data-theme="dark"] .nav-links::before {
+        background: linear-gradient(
+            135deg, 
+            var(--primary-light) 0%, 
+            var(--secondary-light) 100%
+        );
+    }
+} 
+
+/*Focus */ 
+@media (max-width: 768px) {
+    .burger:focus {
+        outline: 2px solid var(--accent-red);
+        outline-offset: 2px;
+        background-color: var(--accent-red-opacity);
+    }
+    
+    .nav-links a:focus {
+        outline: 2px solid var(--accent-red);
+        outline-offset: 2px;
+        background: var(--accent-red-opacity);
+    }
+} 
+/*Detener scroll*/
+body.menu-open {
+    overflow: hidden;
+}
+
+/*Mejoras visuales */
+@media (max-width: 768px) {
+    
+    /* Efecto de blur en el fondo cuando menú está abierto */
+    .nav-links.nav-active {
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Sombra suave para separar del contenido */
+    .nav-links {
+        box-shadow: 
+            0 0 50px rgba(43, 45, 66, 0.1),
+            inset 0 0 100px rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Animación sutil del logo cuando menú está abierto */
+    header.menu-open .logo {
+        transform: scale(0.9);
+        transition: transform var(--transition-normal);
+    }
+    
+    /* Micro-animación en hamburguesa */
+    .burger:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Reducir Movimiento */
+@media (prefers-reduced-motion: reduce) and (max-width: 768px) {
+    .nav-links,
+    .nav-links li,
+    .burger span,
+    .nav-links a {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .nav-links {
+        transform: translateX(100%);
+    }
+    
+    .nav-links.nav-active {
+        transform: translateX(0);
+    }
+    
+    .nav-links li {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/*Optimizaciones de Performance */
+@media (max-width: 768px) {
+    .nav-links,
+    .burger span,
+    .nav-links a {
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+    }
+    
+    .nav-links.nav-active {
+        will-change: auto;
+    }
+}
+
