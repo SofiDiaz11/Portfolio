@@ -26,7 +26,7 @@
     --gradient-primary: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
     --gradient-accent: linear-gradient(135deg, var(--accent-red) 0%, #ff4757 100%);
     --gradient-light: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 100%);
-    --gradient-hero: linear-gradient(135deg, rgba(43, 45, 66, 1) 0%, rgba(141, 153, 174, 1) 33%, rgba(239, 35, 60, 1) 66%, rgba(237, 242, 244, 1) 100%);
+    --gradient-hero: linear-gradient(180deg, rgba(43, 45, 66, 1) 50%, rgba(237, 242, 244, 1) 100%);
     
     /* Sombras */
     --shadow-sm: 0 2px 4px rgba(43, 45, 66, 0.1);
@@ -79,7 +79,7 @@
     
     /* Gradientes para modo oscuro */
     --gradient-primary: linear-gradient(135deg, var(--secondary-light) 0%, var(--primary-light) 100%);
-    --gradient-hero: linear-gradient(135deg, rgba(43, 45, 66, 1) 0%, rgba(141, 153, 174, 1) 33%, rgba(239, 35, 60, 1) 66%, rgba(237, 242, 244, 1) 100%);
+    --gradient-hero: linear-gradient(180deg,rgba(237, 242, 244, 1) 50%, rgba(43,45, 66, 1) 100%);
     
     /* Sombras ajustadas para modo oscuro */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -177,15 +177,57 @@ nav {
 }
 
 .logo {
-    font-family: var(--font-primary);
-    font-weight: var(--font-weight-regular);
-    font-size: 1.8rem;
-    color: var(--primary-dark);
-    transition: color var(--transition-normal);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+    height: 50px;
 }
 
-.logo:hover {
-    color: var(--accent-red);
+.logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: all var(--transition-normal);
+}
+
+.logo_light-mode {
+    display: block;
+}
+
+.logo_dark-mode {
+    display: none;
+}
+[data-theme="dark"] .logo_light-mode {
+    display: none;
+}
+
+[data-theme="dark"] .logo_dark-mode {
+    display: block;
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.05) translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .logo{
+        height: 40px;
+    }
+
+    .logo-img {
+        height: 40px;
+    }   
+}
+
+@media (max-width: 480px) {
+    .logo{
+        height: 35px;
+    }
+
+    .logo-img {
+        height: 35px;
+    }   
 }
 
 .nav-links {
@@ -313,7 +355,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+    background: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%237e8287' fill-opacity='0.19' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
 .hero::after {
@@ -364,6 +406,7 @@ nav {
     transform: translateY(30px);
     animation: fadeInUp 1s ease-out forwards 0.6s;
     color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 5px rgb(43, 45, 66, 1);
 }
 
 .hero-cta {
@@ -530,7 +573,7 @@ nav {
 /* ===== SKILLS SCROLL INFINITO ===== */
 .skills-section {
     padding: var(--spacing-xl) 0;
-    background: var(--primary-dark);
+    background: var(--primary-medium);
     overflow: hidden;
     position: relative;
     transition: background-color var(--transition-normal);
@@ -553,12 +596,12 @@ nav {
 
 .skills-section::before {
     left: 0;
-    background: linear-gradient(to right, var(--primary-dark), transparent);
+    background: linear-gradient(to right, var(--primary-medium), transparent);
 }
 
 .skills-section::after {
     right: 0;
-    background: linear-gradient(to left, var(--primary-dark), transparent);
+    background: linear-gradient(to left, var(--primary-medium), transparent);
 }
 
 [data-theme="dark"] .skills-section::before {
@@ -686,6 +729,7 @@ nav {
     font-weight: var(--font-weight-regular);
     margin-bottom: var(--spacing-sm);
     color: var(--primary-dark);
+    transition: color var(--transition-normal); 
 }
 
 .project-description {
