@@ -347,14 +347,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function submitForm(formData) {
-        // Simulate network delay
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        try {
+        const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                'form-name': 'contact',
+                'name': formData.name,
+                'email': formData.email,
+                'subject': formData.subject,
+                'message': formData.message
+            }).toString()
+        });
 
-        // 95% success rate for demo
-        if (Math.random() > 0.05) {
-            return { success: true };
-        } else {
-            throw new Error('Network error');
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+
+        return { success: true };
+        } catch (error) {
+        console.error('Form submission error:', error);
+        throw error;
         }
     }
 
