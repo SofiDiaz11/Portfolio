@@ -346,30 +346,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
-    async function submitForm(formData) {
-        try {
+   async function submitForm(formData) {
+    try {
+        // Crear FormData en lugar de URLSearchParams
+        const formBody = new FormData();
+        formBody.append('form-name', 'contact');
+        formBody.append('name', formData.name);
+        formBody.append('email', formData.email);
+        formBody.append('subject', formData.subject);
+        formBody.append('message', formData.message);
+
         const response = await fetch('/', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                'form-name': 'contact',
-                'name': formData.name,
-                'email': formData.email,
-                'subject': formData.subject,
-                'message': formData.message
-            }).toString()
+            body: formBody
         });
 
-            if (!response.ok) {
-            throw new Error('Network response was not ok');
-            }
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Server response:', errorText);
+            throw new Error(`Server responded with ${response.status}`);
+        }
 
         return { success: true };
-        } catch (error) {
-        console.error('Form submission error:', error);
+    } catch (error) {
+        console.error('Form submission error details:', error);
         throw error;
-        }
     }
+}
 
     // Add event listeners to form fields
     Object.keys(fields).forEach(fieldName => {

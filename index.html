@@ -170,12 +170,19 @@
         </div>
     </section>
 
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name"/>
+        <input type="email" name="email"/>
+        <input type="text" name="subject"/>
+        <textarea name="message"></textarea>
+    </form>
+
     <section id="contact" class="contact">
         <div class="container">
             <div class="contact-content">
                 <h2 class="section-title">Contact</h2>
                 <p>Do you have a project in mind? Let's talk and make it happen!</p>
-                <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <form class="contact-form" id="contactForm" name="contact" method="POST">
                     <input type="hidden" name="form-name" value="contact">
                     <p style="display: none;">
                         <label>Don’t fill this out if you're human: <input name="bot-field"></label>
